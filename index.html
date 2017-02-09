@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Knoldus Software LLP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="bootstrap.min.css"></script>
+    <script>
+        function updateTime(){
+        var date=new Date();
+        var time = date.toLocaleTimeString();
+        document.getElementById("time").innerHTML= "<small>Local Time: "+time+"</small>";
+        }
+
+        window.onload=function(){
+        updateTime();
+        addServices();
+        }
+        //update local time every second
+        setInterval(function(){
+        updateTime();
+        },1000);
+
+        //Array of usernames
+        var userlist = ["pankhurie","navya"];
+        //Array of user passwords
+        var passwordlist = ["demo_1", "demo_2"];
+        var userdetails=[{username:"pankhurie", firstname:"Pankhurie", lastname:"Gupta", phone:"9876543210"},{username:"pankhurie", firstname:"Pankhurie", lastname:"Gupta", phone:"9876543210"}];
+
+        function validateForm(){
+
+          var username = document.login.username.value;
+          var password = document.login.password.value;
+
+          if((username=="")||(password=="")){
+            alert("Please enter both user name and password.");
+            return false;
+          }
+          var index = userlist.indexOf(username);
+          if(index == -1){
+            alert("Invalid User.");
+            return false;
+          }
+          else
+          {
+            if(passwordlist[index]!=password){
+              alert("Incorrect password.");
+              return false;
+            }
+            else {
+              alert("Welcome back "+userdetails[index].firstname+" "+userdetails[index].lastname+".");
+              return true;
+            }
+          }
+        }
+
+
+    function addServices(){
+
+      var checkboxes = document.getElementsByName("services_checked");
+
+      var checkboxesChecked = new Array();
+      var sum = 0;
+      for (var i=0; i<checkboxes.length; i++) {
+
+        if (checkboxes[i].checked) {
+          checkboxesChecked.push(checkboxes[i].value);
+          sum=sum+parseInt(checkboxes[i].value);
+        }
+      }
+    document.getElementById("servicecharges").innerHTML= "<b>Estimated service charges: $"+sum+"</b>";
+    }
+    </script>
+    <style>
+        body{
+        margin:30px
+        }
+        .navbar{
+        display:table;
+        table-layout:fixed;
+        text-align:center;
+        }
+        .navbar li{
+        display:table-cell;
+        width:15%;
+        padding-right:1px;
+        vertical-align:bottom;
+        }
+        .navbar a{
+        display:block;
+        min-height:100%;
+        padding:1px 1px;
+        background-color: #e67e22;
+        color:white;
+        border-radius:6px 6px 0 0;
+
+        }
+        .navbar a:hover{
+        background-color: #d35400;
+        }
+        .navbar img{
+        padding-right:5px;
+        }
+        .title{
+        align:center;
+        text-align:center;
+        color:#2c3e50;
+        }
+        .title2{
+        align:left;
+        text-align:left;
+        color:#2c3e50;
+        padding:100px 0px 10px 0px
+        }
+        .title3{
+        align:left;
+        text-align:left;
+        color:#2c3e50;
+        }
+        .centertext{
+        text-align:center;
+        color:#34495e;
+        }
+        .estimates{
+          color:#34495e;
+        }
+        .divider{
+        width:60%;
+        color:#7f8c8d;
+        }
+        .parent{
+        display:flex;
+        width:100%;
+        }
+        .col{
+        color:#34495e;
+        display:flex;
+        height:100px;
+        width:33.33%;
+        text-align:justify;
+        padding:1px 5px;
+        }
+        .col h3{
+        color:#2c3e50;
+        }
+        .icon{
+
+        width:100px;
+        }
+        .mid{
+        padding:0px 5px
+        }
+        .end{
+        display:flex;
+        width:100%;
+        }
+        .col1{
+
+        width:66%;
+        padding:px 5px;
+        }
+        .col2{
+        width:34%;
+        padding:0px 0px 0px 50px;
+        }
+        .services ul{
+        padding-left: 20px;
+        text-indent: 2px;
+        list-style: none;
+        list-style-position: outside;
+        }
+        .services li{
+        margin-bottom:10px;
+        color:#34495e;
+
+        }
+        .services li:before{
+        content: '✔';
+        margin-left: -1em;
+        margin-right: .100em;
+
+        }
+        .footer{
+        height:50px;
+        background-color:#2c3e50;
+        }
+        .headerdiv{
+        color:#34495e;
+        position:absolute;
+        top:0;
+        right:0;
+        margin:0px 50px;
+        }
+        .validatemsg{
+        color:#34495e;
+        position:absolute;
+
+        right:0;
+        margin:0px 50px;
+        }
+
+    </style>
+</head>
+<body>
+<header></header>
+<div>
+
+    <div class="headerdiv pull-right">
+      <p id="time" class="pull-right"></p><br>
+
+      <form name="login" class="pull-right" action="#" onsubmit="return validateForm()" method="post">
+          <div class="form-inline">
+
+              <input name="username" id="username" type="text"  class="form-control" placeholder="username" onfocus="this.placeholder=''" onblur="this.placeholder='username'"/>
+              <input name="password" id="password" type="password"  class="form-control" placeholder="password"  onfocus="this.placeholder=''" onblur="this.placeholder='password'"/>
+              <input type="submit" value="submit" class="btn btn-default" />
+
+          </div>
+      </form>
+
+    </div>
+    <br>
+    <ul class="navbar">
+        <li><img width="250px" src="knoldus.png" alt="Knoldus" onclick="loadhome()"/></li>
+        <li><a href="index.html"><h3>Home</h3></a></li>
+        <li><a href="index.html"><h3>About Us</h3></a></li>
+        <li><a href="index.html"><h3>Gallery</h3></a></li>
+        <li><a href="index.html"><h3>Services</h3></a></li>
+        <li><a href="index.html"><h3>Features</h3></a></li>
+    </ul>
+
+</div>
+
+
+<img src="cover-corporates.jpg" width="100%" height="400px"/>
+<h1 class="title">why choose us?</h1>
+<div>
+    <p class="centertext">Knoldus is a team of Passionate Technologists, focused on staying at the edge of the curve.
+        We love to build Scalable, Performant, Concurrent systems with Functional Programming to meet
+        the needs of the business. </p>
+</div>
+<br>
+<hr class="divider">
+<br>
+
+<div class="parent">
+    <div class="col">
+        <div><img class="icon" src="idea-xxl.png"></div>
+
+        <div class="mid">
+            <h3>Powerful Clean Design</h3>
+            Knoldus is a team of Passionate Technologists, focused on staying at the edge of the curve.
+            We love to build Scalable, Performant, Concurrent systems with Functional Programming to meet
+            the needs of the business.
+        </div>
+
+    </div>
+    <div class="col">
+        <div class="icon"><img class="icon" src="arrows-icon.png"></div>
+        <div class="mid">
+            <h3>Fully Responsive</h3>
+            Knoldus is a team of Passionate Technologists, focused on staying at the edge of the curve.
+            We love to build Scalable, Performant, Concurrent systems with Functional Programming to meet
+            the needs of the business.
+        </div>
+    </div>
+    <div class="col">
+        <div class="icon"><img class="icon" src="eye.png"></div>
+        <div class="mid">
+            <h3>Retina Ready</h3>
+            Knoldus is a team of Passionate Technologists, focused on staying at the edge of the curve.
+            We love to build Scalable, Performant, Concurrent systems with Functional Programming to meet
+            the needs of the business.
+        </div>
+    </div>
+
+</div>
+<h1 class="title2">We provide the best consulting services</h1>
+
+<div class="end">
+    <div class="col1">
+        <img width="100%" src="meeting.jpg">
+    </div>
+
+    <div class="col2">
+        <h1 class="title3">Our Services:</h1>
+        <ul class="services">
+            <p class="estimates">Select services for an estimate of charges.</p>
+            <li><input type="checkbox" name="services_checked" value="1000" onchange="addServices()">Tax Consultiing</li>
+            <li><input type="checkbox" name="services_checked" value="2000" onchange="addServices()">Business Consultiing</li>
+            <li><input type="checkbox" name="services_checked" value="1500" onchange="addServices()">Data Analysis Methods</li>
+            <li><input type="checkbox" name="services_checked" value="3000" onchange="addServices()">On Demand Consulting</li>
+            <li><input type="checkbox" name="services_checked" value="5000" onchange="addServices()">Private Consultant</li>
+            <p id="servicecharges" class="estimates"><b>Estimated service charges: $0</b></p>
+        </ul>
+<div>
+
+</form>
+</div>
+    </div>
+
+</div>
+
+<div class="footer"><footer><p class="pull-right">Copyright Knoldus</p></footer></div>
+</body>
+</html>
